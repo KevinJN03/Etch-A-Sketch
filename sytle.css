@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;0,900;1,700&display=swap');
+
+:root {
+    --primary-grey: #e8e8e8 ;
+    --primary-black: #2F2F2F;
+    --primary-white: 	#FAF9F6;
+
+}
+* {
+    font-family: "Poppins", sans-serif;
+}
+html{
+    background-color: var(--primary-grey);
+}
+
+#title {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--primary-black);
+}
+.grid-container {
+    /* background: var(--primary-black); */
+    width: 700px;
+    height: 700px;
+    border: 5px black solid;
+    background: var(--primary-white);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
+    
+    
+
+}
+
+.grid-square {
+    background: var(--primary-white);
+    
+    
+
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;;
+    flex-wrap: nowrap;
+    gap: 10%
+}
+#side-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    margin-left: 22%;
+
+}
+
+.btn {
+ /* background: var(--primary-black); */
+ padding: 10px 40px;
+ font-size: 1.1rem;
+ border-radius: 10px;
+ /* color: var(--primary-white); */
+}
+
+.slider {
+    width: 100%;
+}
+
+#range-slider{
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 10px; /* Specified height */
+    background: var(--primary-white);
+    border: 2px solid black;
+    border-radius: 20px;
+
+}
+
+
+#range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 30px; /* Set a specific slider handle width */
+  height: 30px; /* Slider handle height */
+  border-radius: 50%;
+  background: var(--primary-black);
+  cursor: pointer; /* Cursor on hover */
+  
+}
+
