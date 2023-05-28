@@ -1,39 +1,41 @@
 const gridContainer = document.querySelector(".grid-container");
 const allBtn = document.querySelectorAll(".btn");
 const slider = document.querySelector("#range-slider");
+
 makeGrid(2)
 
 
 let colortest = document.querySelector("h1").style.color
 console.log("Color", colortest)
-    slider.addEventListener("click", () => {
-        console.log(`${slider.value} x ${slider.value} = ${slider.value * slider.value}`)
-        clear()
-        makeGrid(slider.value)
-        
-        gridContainer.setAttribute("style", `grid-template-columns: repeat(${slider.value}, 1fr)`)
-        
-        //slider.value = slider.max
-    })
-    allBtn[0].addEventListener("click", () => {
+slider.addEventListener("click", () => {
+    console.log(`${slider.value} x ${slider.value} = ${slider.value * slider.value}`)
+    clear()
+    makeGrid(slider.value)
+    gridContainer.setAttribute("style", `grid-template-columns: repeat(${slider.value}, 1fr)`)
+    
+    //slider.value = slider.max
+})
+allBtn[0].addEventListener("click", () => {
+    const colorPicker = document.querySelector("#color-picker").value
+    console.log(colorPicker)
     changeBackground(allBtn[0])
-    changeColorGrid("red")
-    originalColor(allBtn[0])
-    })
+    changeColorGrid(colorPicker)
+// originalColor(allBtn[0])
+})
+
+allBtn[1].addEventListener("click", () => {
+    changeBackground(allBtn[1])
+    // originalColor(allBtn[1])
+})
+
+allBtn[2].addEventListener("click", () => {
+    changeBackground(allBtn[2])
+    // originalColor(allBtn[2])
+    changeColorGrid("var(--primary-white)")
     
-    allBtn[1].addEventListener("click", () => {
-        changeBackground(allBtn[1])
-        originalColor(allBtn[1])
-    })
-    
-    allBtn[2].addEventListener("click", () => {
-        changeBackground(allBtn[2])
-        originalColor(allBtn[2])
-        changeColorGrid("var(--primary-white)")
-        
-    })
-    
-    allBtn[3].addEventListener("click", clear)
+})
+
+allBtn[3].addEventListener("click", clear)
     
 // gridContainer.onmouseover = function(){
 // changeColorGrid("red")
@@ -71,15 +73,13 @@ function clear(){
 
 
 const changeBackground = (btn) => {
-    btn.setAttribute("style", "background: var(--primary-black); color: var(--primary-white)")
-}
-function originalColor(btn){
+
     const allBtn = document.querySelectorAll(".btn");
 for(let i =0; i < allBtn.length; i++){
     if(allBtn[i] == btn){
-        continue
+        btn.setAttribute("style", "background: var(--primary-black); color: var(--primary-white)")
     } else {
-        allBtn[i].setAttribute("style", "background: var(--primary-white); color: var(--primary-black)")
+        allBtn[i].setAttribute("style", "background: var(--primary-grey); color: var(--primary-black)")
     }
 }
-} @
+}
