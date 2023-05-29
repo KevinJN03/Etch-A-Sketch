@@ -8,11 +8,7 @@ function game(){
     
     changeBackground(allBtn[0])
     makeGrid(16)
-    Picker.onmouseleave = function(){
-    let colorPicker = document.querySelector("#color-picker").value
-    changeColorGrid(colorPicker);
-    changeBackground(allBtn[0])
- }
+
 slider.addEventListener("click", () => {
     clear()
     console.log(`${slider.value} x ${slider.value} = ${slider.value * slider.value}`)
