@@ -1,46 +1,60 @@
 const gridContainer = document.querySelector(".grid-container");
 const allBtn = document.querySelectorAll(".btn");
 const slider = document.querySelector("#range-slider");
+const gridText = document.querySelector("#grid-text");
+let Picker = document.querySelector("#color-picker")
+function game(){
 
-makeGrid(2)
-
-
-let colortest = document.querySelector("h1").style.color
-console.log("Color", colortest)
+makeGrid(16)
+ Picker.onmouseleave = function(){
+    let colorPicker = document.querySelector("#color-picker").value
+    changeColorGrid(colorPicker);
+    changeBackground(allBtn[0])
+ }
 slider.addEventListener("click", () => {
-    console.log(`${slider.value} x ${slider.value} = ${slider.value * slider.value}`)
     clear()
+    console.log(`${slider.value} x ${slider.value} = ${slider.value * slider.value}`)
+    gridContainer.setAttribute("style", `grid-template-columns: repeat(${slider.value}, 1fr); grid-template-rows: repeat(${slider.value}, 1fr)`)
+    gridText.textContent = `${slider.value} X ${slider.value}`
+   
     makeGrid(slider.value)
-    gridContainer.setAttribute("style", `grid-template-columns: repeat(${slider.value}, 1fr)`)
+
     
-    //slider.value = slider.max
+    
 })
+
 allBtn[0].addEventListener("click", () => {
-    const colorPicker = document.querySelector("#color-picker").value
+    let colorPicker = document.querySelector("#color-picker").value
     console.log(colorPicker)
     changeBackground(allBtn[0])
     changeColorGrid(colorPicker)
-// originalColor(allBtn[0])
 })
 
 allBtn[1].addEventListener("click", () => {
     changeBackground(allBtn[1])
-    // originalColor(allBtn[1])
+    //colorPicker = Math.floor(Math.random()*16777215).toString(16);
+    //changeColorGrid(`#${colorPicker}`)
+    randomColor()
 })
 
 allBtn[2].addEventListener("click", () => {
+    //let colorPicker = document.querySelector("#color-picker").value
     changeBackground(allBtn[2])
-    // originalColor(allBtn[2])
-    changeColorGrid("var(--primary-white)")
+    colorPicker = "var(--primary-white)"
+    changeColorGrid(colorPicker)
+   // changeColorGrid("var(--primary-white)")
     
 })
 
 allBtn[3].addEventListener("click", clear)
-    
-// gridContainer.onmouseover = function(){
-// changeColorGrid("red")
-// }
 
+// gridContainer.onclick = function(){
+// let colorPicker = document.querySelector("#color-picker").value
+// changeColorGrid(colorPicker)
+// }
+    
+}
+game()
 
 function changeColorGrid(color){
     const gridSquare = document.querySelectorAll(".grid-square");
@@ -48,12 +62,22 @@ function changeColorGrid(color){
     gridSquare[x].onmouseenter = function(){
         gridSquare[x].style.backgroundColor = color
     }
-    gridSquare[x].onmouseleave = function(){
-    }
-    
     }
 
 }
+function randomColor(){
+    const gridSquare = document.querySelectorAll(".grid-square");
+    
+    for(let x=0; x < gridSquare.length; x++){
+    
+    gridSquare[x].onmouseenter = function(){
+        colorPicker = Math.floor(Math.random()*16777215).toString(16);
+        gridSquare[x].style.backgroundColor = `#${colorPicker}`
+    }
+    }
+}
+
+
 function makeGrid(num){
     const gridSquare = document.querySelectorAll(".grid-square");
     for(let i = 0; i< num * num; i++){
