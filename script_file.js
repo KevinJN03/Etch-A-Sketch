@@ -5,9 +5,10 @@ const gridText = document.querySelector("#grid-text");
 let Picker = document.querySelector("#color-picker")
 
 function game(){
-
-makeGrid(16)
- Picker.onmouseleave = function(){
+    
+    changeBackground(allBtn[0])
+    makeGrid(16)
+    Picker.onmouseleave = function(){
     let colorPicker = document.querySelector("#color-picker").value
     changeColorGrid(colorPicker);
     changeBackground(allBtn[0])
@@ -52,18 +53,29 @@ allBtn[3].addEventListener("click", ()=>{
     makeGrid(slider.value)
 })
 
-gridContainer.onclick = function(){
-let colorPicker = document.querySelector("#color-picker").value
-changeColorGrid(colorPicker)
+gridContainer.onmouseover = function(){
+    
+   if(allBtn[0].style.background == "var(--primary-black)"){
+    let colorPicker = document.querySelector("#color-picker").value
+    
+    console.log("color mode is selected");
+    changeColorGrid(colorPicker)
+   } else if(allBtn[1].style.background == "var(--primary-black)"){
+    console.log("rainbow mode is selected")
+    randomColor()
+   }
+
+//
 }
     
 }
 game()
-changeBackground(allBtn[0])
+
+
 function changeColorGrid(color){
     const gridSquare = document.querySelectorAll(".grid-square");
     for(let x=0; x < gridSquare.length; x++){
-    gridSquare[x].onmouseenter = function(){
+    gridSquare[x].onmouseover = function(){
         gridSquare[x].style.backgroundColor = color
     }
     }
@@ -74,7 +86,7 @@ function randomColor(){
     
     for(let x=0; x < gridSquare.length; x++){
     
-    gridSquare[x].onmouseenter = function(){
+    gridSquare[x].onmouseover = function(){
         colorPicker = Math.floor(Math.random()*16777215).toString(16);
         gridSquare[x].style.backgroundColor = `#${colorPicker}`
     }
