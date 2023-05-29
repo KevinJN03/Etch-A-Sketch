@@ -3,6 +3,7 @@ const allBtn = document.querySelectorAll(".btn");
 const slider = document.querySelector("#range-slider");
 const gridText = document.querySelector("#grid-text");
 let Picker = document.querySelector("#color-picker")
+
 function game(){
 
 makeGrid(16)
@@ -46,16 +47,19 @@ allBtn[2].addEventListener("click", () => {
     
 })
 
-allBtn[3].addEventListener("click", clear)
+allBtn[3].addEventListener("click", ()=>{
+    clear();
+    makeGrid(slider.value)
+})
 
-// gridContainer.onclick = function(){
-// let colorPicker = document.querySelector("#color-picker").value
-// changeColorGrid(colorPicker)
-// }
+gridContainer.onclick = function(){
+let colorPicker = document.querySelector("#color-picker").value
+changeColorGrid(colorPicker)
+}
     
 }
 game()
-
+changeBackground(allBtn[0])
 function changeColorGrid(color){
     const gridSquare = document.querySelectorAll(".grid-square");
     for(let x=0; x < gridSquare.length; x++){
@@ -96,7 +100,7 @@ function clear(){
 }
 
 
-const changeBackground = (btn) => {
+function changeBackground(btn) {
 
     const allBtn = document.querySelectorAll(".btn");
 for(let i =0; i < allBtn.length; i++){
